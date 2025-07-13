@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    
+        <a class="navbar-brand text-primary order-lg-2" href="#">FastLearn</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse d-flex-xs flex-cloumn-xs flex-row-lg" id="navbarNav">
+            
+            <ul class="navbar-nav mr-lg-auto list-unstyled order-lg-2" >
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/login">ورود</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/register">ثبت‌نام</a>
+                </li>
+            </ul>
+        
+            <ul class="navbar-nav list-unstyled">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">خانه</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">تماس با ما</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        دوره‌ها
+                    </a>
+                    <div class="dropdown-menu text-right" aria-labelledby="coursesDropdown">
+                        <a class="dropdown-item" href="#">دوره برنامه‌نویسی</a>
+                        <a class="dropdown-item" href="#">دوره طراحی وب</a>
+                        <a class="dropdown-item" href="#">دوره یادگیری ماشین</a>
+                    </div>
+                </li>
+            </ul>
+
+            <form class="form-inline search-form my-2 my-lg-0" method="get" action="/search">
+                <input class="form-control mr-sm-2" type="search" placeholder="جستجو..." aria-label="Search">
+                <input type="submit" value="جست و جو" class="btn btn-primary">
+            </form>
+    
+        </div>
+        
+    </nav>
