@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.fa.min.css">
+    <title> <%= title%> </title>
+</head>
+<body>
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h3 class="bg-light p-2">ثبت نام</h3>
+
+            <div class="container mt-2">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            log log log log log log log log log log 
+                            
+                            <button data-dismiss="alert" class="close" type="button">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form action="/auth/register" method="post" class="mt-4">
+                
+                <div class="form-group">
+                    <label for="fullName">نام کامل</label>
+                    <input type="text" name="fullName" class="form-control" id="fullName" placeholder="نام کامل خودرا وارد کنید...">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">ایمیل</label>
+                    <input type="text" name="email" class="form-control" id="email" placeholder="ایمیل خودرا وارد کنید...">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">رمز عبور</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="رمز عبور خودرا وارد کنید...">
+                </div>
+
+                 <div class="form-group">
+                    <label for="rePassword">تکرار رمز عبور</label>
+                    <input type="password" name="rePassword" class="form-control" id="rePassword" placeholder="رمز عبور خودرا مجدد وارد کنید...">
+                </div>
+
+                <div class="form-group container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="submit" value="ثبت نام" class="btn btn-block btn-primary my-2">
+                        </div>
+                         <div class="col-lg-6">
+                            <a href="/auth/google" class="btn btn-block btn-outline-danger my-2">ثبت نام با گوگل</a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
