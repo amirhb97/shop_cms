@@ -13,30 +13,39 @@
         <div class="col-lg-8">
             <h3 class="bg-light p-2">ثبت نام</h3>
 
-            <div class="container mt-2">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="alert alert-danger alert-dismissible fade show">
-                            log log log log log log log log log log 
-                            
-                            <button data-dismiss="alert" class="close" type="button">
-                                <span>&times;</span>
-                            </button>
+            <%if(v_errors.length > 0){%>
+                <div class="container mt-2">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="alert alert-danger alert-dismissible fade show">
+                                <ul class="list-unstyled">
+                                   
+                                    <%v_errors.forEach(err =>{%>
+                                        <li><%-err%></li>
+                                    <%})%>
+                                
+                                </ul>
+                                
+                                <button data-dismiss="alert" class="close" type="button">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>            
+            <%}%>
+
 
             <form action="/auth/register" method="post" class="mt-4">
                 
                 <div class="form-group">
                     <label for="fullName">نام کامل</label>
-                    <input type="text" name="fullName" class="form-control" id="fullName" placeholder="نام کامل خودرا وارد کنید...">
+                    <input type="text" name="fullName" class="form-control" id="fullName" placeholder="نام کامل خودرا وارد کنید..." value="<%= payload? payload.fullName : '' %>">
                 </div>
 
                 <div class="form-group">
                     <label for="email">ایمیل</label>
-                    <input type="text" name="email" class="form-control" id="email" placeholder="ایمیل خودرا وارد کنید...">
+                    <input type="text" name="email" class="form-control" id="email" placeholder="ایمیل خودرا وارد کنید..." value="<%= payload? payload.email : '' %>">
                 </div>
 
                 <div class="form-group">
