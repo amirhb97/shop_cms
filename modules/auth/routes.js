@@ -5,7 +5,12 @@ const authRoutes = require('express').Router();
 
 authRoutes.get('/register', authConrollers.showRegisterPage);
 authRoutes.post('/register',authValidators.registerValidation(),
-                            authConrollers.checkValidation)
+                            authConrollers.checkValidation,
+                            authConrollers.checkRecaptcha,
+                            authConrollers.registerNewUser);
+
+
+
 
 
 
