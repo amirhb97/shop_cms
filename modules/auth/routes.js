@@ -12,6 +12,14 @@ authRoutes.post('/register',authValidators.registerValidation(),
 
 
 
+authRoutes.get('/login',authConrollers.showLoginPage);
+authRoutes.post('/login',authValidators.loginValidation(),
+                         authConrollers.checkValidation,
+                         authConrollers.checkRecaptcha,
+                         authConrollers.loginUser)
+
+
+
 
 
 

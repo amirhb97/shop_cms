@@ -14,7 +14,15 @@ function registerValidation(){
     ]
 }
 
+function loginValidation(){
+    return [
+        body('email').isEmail().withMessage(authMessage.validation.email),
+        body('password').isLength({min:8}).withMessage(authMessage.validation.password)
+    ]
+}
+
 
 module.exports = {
-    registerValidation
+    registerValidation,
+    loginValidation
 }

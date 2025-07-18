@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= title%> </title>
+</head>
+<body>
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h3 class="bg-light p-2">ورود به حساب کاربری</h3>
+
+            <%if(v_errors.length > 0){%>
+                <div class="container mt-2">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="alert alert-danger alert-dismissible fade show">
+                                <ul class="list-unstyled">
+                                   
+                                    <%v_errors.forEach(err =>{%>
+                                        <li><%-err%></li>
+                                    <%})%>
+                                
+                                </ul>
+                                
+                                <button data-dismiss="alert" class="close" type="button">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            <%}%>
+
+
+            <form action="/auth/login" method="post" class="mt-4">
+                
+
+                <div class="form-group">
+                    <label for="email">ایمیل</label>
+                    <input type="text" name="email" class="form-control" id="email" placeholder="ایمیل خودرا وارد کنید..." value="<%= payload? payload.email : '' %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">رمز عبور</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="رمز عبور خودرا وارد کنید...">
+                </div>
+
+
+                <div class="form-group">
+                    <div style="max-width : 90%; overflow: hidden;">
+                        <%- recaptcha %>
+                    </div>
+                </div>
+
+                <div class="form-group container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="submit" value="ورود" class="btn btn-block btn-success my-2">
+                        </div>
+                         <div class="col-lg-6">
+                            <a href="/auth/google" class="btn btn-block btn-outline-danger my-2">ورود با گوگل</a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
