@@ -7,14 +7,29 @@
 
         <div class="collapse navbar-collapse d-flex-xs flex-cloumn-xs flex-row-lg" id="navbarNav">
             
-            <ul class="navbar-nav mr-lg-auto list-unstyled order-lg-2" >
-                <li class="nav-item">
-                    <a class="nav-link" href="/auth/login">ورود</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/auth/register">ثبت‌نام</a>
-                </li>
-            </ul>
+
+            <%if(!req.logedIn){%>
+                <ul class="navbar-nav mr-lg-auto list-unstyled order-lg-2" >
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/login">ورود</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/register">ثبت‌ نام</a>
+                    </li>
+                </ul>
+            <%}%>
+            <%if(req.logedIn){%>
+                <div class="navbar-nav dropdown mr-lg-auto order-lg-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <%= req.user.fullName%>
+                    </a>
+                    <div class="dropdown-menu text-right" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="#">پروفایل</a>
+                            <a class="dropdown-item" href="#">سبد خرید</a>
+                            <a class="dropdown-item" href="/auth/logout">خروج</a>
+                    </div>
+                </div>
+            <%}%>
         
             <ul class="navbar-nav list-unstyled">
                 <li class="nav-item">

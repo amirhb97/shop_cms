@@ -8,6 +8,7 @@ const session = require('express-session');
 const MogoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
+require('./configs/passport-config')(passport);
 const express = require('express');
 
 const app = express();
