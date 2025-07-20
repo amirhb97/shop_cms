@@ -7,7 +7,7 @@ const UserModel = require('../models/users');
 
 function strategy(passport){
     
-    passport.use(
+    passport.use('local',
         new LocalStrategy(
             {usernameField : 'email' , passwordField:'password' , passReqToCallback:true },
             async (req,email,password,done) => {
@@ -31,6 +31,11 @@ function strategy(passport){
             }
         )
     )
+
+
+
+    
+
 
 
     //set data to req.session
