@@ -16,7 +16,7 @@ class AuthControllers extends Controllers {
 
     async registerNewUser(req,res,next){
         try {
-            const exitsUser = await UserModel.findOne({email:req.email});
+            const exitsUser = await UserModel.findOne({email:req.body.email});
             if(exitsUser){
                 req.flash('v_errors',[`${authMessage.alreadyEmail}`]);
                 return res.redirect(req.baseUrl+req.url);
