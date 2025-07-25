@@ -1,5 +1,6 @@
 const {Strategy : LocalStrategy} = require('passport-local');
 const {comparePassword} = require('../utils/hash-utils');
+const uniqueString = require('unique-string');
 const UserModel = require('../models/users');
 
 //localStrategy -->(username,password)
@@ -16,12 +17,12 @@ function strategy(passport){
                     const user = await UserModel.findOne({email : email});
                     if(user){
                      
-                        if(comparePassword(password,user.password)){
+                        if(comparePassword(password,user.password)){    
                             return done(null,user);
                         }
                     }
-                    
-                    return done(null,false,req.flash('v_errors',['ایمیل و یا رمزعبور نامعتبر می باشد']));
+                     
+                    return done(null,false,{message:'ایمیل و یا رمز عبور نامعتبر می باشد.'});
                 
                     
                 } catch (error) {
@@ -32,8 +33,10 @@ function strategy(passport){
         )
     )
 
-
-
+    //passport automatically after run strategy(paassport.authenticated()) run logIn() function;
+    //login() Funtcion run the serializeUser And deserializeUser
+    //(when use passport.authenticaed() in callback form you should call login() function)
+    
     
 
 

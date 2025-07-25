@@ -1,10 +1,12 @@
 const Controllers = require('../controller');
+const passport = require('passport');
 const UserModel = require('../../models/users');
 const authMessage = require('./message');
 const {hashPassword} = require('../../utils/hash-utils'); 
 
 
 class AuthControllers extends Controllers {
+    
     showRegisterPage(req,res,next){ 
         res.render('auth/register',{
            title : 'ثبت نام',
@@ -26,7 +28,7 @@ class AuthControllers extends Controllers {
             const newUser = await UserModel.insertOne(req.body);
             
             //auto login after register
-            //req.login(newUser,(err)=>{   
+            //req.logIn(newUser,(err)=>{   
             // });
 
             req.flash('message',authMessage.registerSuccessful)
@@ -50,6 +52,33 @@ class AuthControllers extends Controllers {
             recaptcha : this.repatcha.render()
         })
     }
+
+    async loginUser(req,res,next){
+        try {
+            
+            passport.authenticate('local',function (err,user,info){
+                if(err) throw err
+                if (!user) {
+                    req.flash('v_errors',info.message);
+                    return res.redirect('/auth/login');
+                }
+                req.logIn(user,function (err){
+                    if(err) throw err
+                    res.redirect('/')
+                });
+            })(req,res,next);
+            //authenticate is generate a middleware function
+            //so when you use inside another middleware function
+            //you should call to run because of that we pass (req,res,next) as argument to the
+            //middleware function which generate by authenticate to run
+            
+
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
 
     logOutUser(req,res,next){
         req.logout(()=>{

@@ -5,6 +5,7 @@ const userSchema = new Schema({
     email: {type:String , require:true, unique:true},
     password : {type:String , require:true},
     admin : {type : Boolean , default : false},
+    rememberToken : {type:String , default:null}
 },{timestamps:true});
 
 
