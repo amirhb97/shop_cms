@@ -3,6 +3,7 @@ const passport = require('passport');
 const UserModel = require('../../models/users');
 const authMessage = require('./message');
 const {hashPassword} = require('../../utils/hash-utils'); 
+const uniqueString = require('unique-string');
 
 
 class AuthControllers extends Controllers {
@@ -53,43 +54,48 @@ class AuthControllers extends Controllers {
         })
     }
 
-    async loginUser(req,res,next){
+   loginUser(req,res,next){
         try {
-            
+
             passport.authenticate('local',function (err,user,info){
                 if(err) throw err
                 if (!user) {
                     req.flash('v_errors',info.message);
                     return res.redirect('/auth/login');
                 }
-                req.logIn(user,function (err){
+
+                req.logIn(user,async function (err){
                     if(err) throw err
-                    res.redirect('/')
+
+                    if(req.body.remember){
+                        const token = uniqueString();
+                        res.cookie('remember_token',token,{
+                            maxAge : 1000 * 60 * 60 * 24 * 10,
+                            httpOnly : true
+                        });
+
+                        user.rememberToken = token ;
+                        await user.save();
+
+                    }
+                    res.redirect('/');
                 });
+
             })(req,res,next);
+
+
+
             //authenticate is generate a middleware function
             //so when you use inside another middleware function
             //you should call to run because of that we pass (req,res,next) as argument to the
             //middleware function which generate by authenticate to run
             
-
-
         } catch (error) {
             next(error)
         }
     }
-
-
-    logOutUser(req,res,next){
-        req.logout(()=>{
-            res.redirect('/');
-        });
-    }
-
-
   
    
-
 }
 
 

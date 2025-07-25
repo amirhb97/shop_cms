@@ -21,7 +21,7 @@ authRoutes.post('/login',authValidators.loginValidation(),
 
 
 
-authRoutes.get('/logout',authConrollers.logOutUser);
+
 
 
 

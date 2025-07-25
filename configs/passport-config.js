@@ -1,6 +1,5 @@
 const {Strategy : LocalStrategy} = require('passport-local');
 const {comparePassword} = require('../utils/hash-utils');
-const uniqueString = require('unique-string');
 const UserModel = require('../models/users');
 
 //localStrategy -->(username,password)
@@ -19,6 +18,7 @@ function strategy(passport){
                      
                         if(comparePassword(password,user.password)){    
                             return done(null,user);
+                            
                         }
                     }
                      
